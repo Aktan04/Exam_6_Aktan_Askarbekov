@@ -111,7 +111,7 @@ public class DumpHttpServer
                            }
                            return;
                        }
-                       HandleCatAction(action, taskId);
+                       HandleTaskAction(action, taskId);
                        context.Response.Redirect("/index.html");
                    }
                }
@@ -196,7 +196,7 @@ public class DumpHttpServer
         return html;
     }
     
-    private void HandleCatAction(string action, string taskId)
+    private void HandleTaskAction(string action, string taskId)
     {
         TaskModel task = _taskModels.FirstOrDefault(t => t.Id == Convert.ToInt32(taskId));
         if (task != null)
