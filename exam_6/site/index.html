@@ -1,0 +1,64 @@
+@{
+Layout = "layout";
+}
+
+<div class="container">
+    <h1>Список задач</h1>
+    <table border="1">
+        <tr>
+            <th>Название</th>
+            <th>Имя</th>
+            <th>Описание</th>
+            <th>Статус</th>
+            <th>Дата создания</th>
+            <th>Дата выполнения</th>
+            <th>Действия</th>
+        </tr>
+        @foreach (var task in Model.Tasks)
+        {
+        <tr>
+            <td>@task.Title</td>
+            <td>@task.ExecutorName</td>
+            <td>@task.Description</td>
+            <td>@task.Status</td>
+            <td>@task.CreatedDate</td>
+            <td>
+                @if (task.CompletedDate != null)
+                {
+                @task.CompletedDate
+                }
+                else
+                {
+                <text>еще не выполнено</text>
+                }
+            </td>
+
+            <td>
+                <form action="http://localhost:8888/index.html" method="get">
+                    <select name="action" id="action">
+                        <option value="view">Подробнее</option>
+                        @if (task.Status != "done") 
+                        {
+                        <option value="complete">Отметить как выполненное</option>
+                        }
+                        <option value="delete">Удалить задачу</option>
+                    </select>
+                    <input type="hidden" name="id" value="@task.Id">
+                    <input type="submit" value="Выполнить">
+                </form>
+            </td>
+        </tr>
+        }
+    </table>
+
+    <h2>Добавить новую задачу</h2>
+    <form action="http://localhost:8888/index.html" method="post">
+        <label for="title">Название:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="executorName">Имя:</label><br>
+        <input type="text" id="executorName" name="executorName"><br>
+        <label for="description">Описание:</label><br>
+        <textarea id="description" name="description"></textarea><br>
+        <input type="submit" value="Добавить задачу">
+    </form>
+</div>

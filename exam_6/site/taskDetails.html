@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #343a40;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-top: 0;
+        }
+
+        p {
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+
+        
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Подробности задачи</h1>
+    <div id="taskDetails">
+        <h2>@Model.Title</h2>
+        <p><strong>Имя:</strong> @Model.ExecutorName</p>
+        <p><strong>Описание:</strong> @Model.Description</p>
+        <p><strong>Статус:</strong> @Model.Status</p>
+        <p><strong>Дата создания:</strong> @Model.CreatedDate</p>
+        @if (!string.IsNullOrEmpty(Model.CompletedDate))
+        {
+        <p><strong>Дата выполнения:</strong> @Model.CompletedDate</p>
+        }
+    </div>
+</div>
+</body>
+</html>
